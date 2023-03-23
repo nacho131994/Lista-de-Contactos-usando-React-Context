@@ -1,17 +1,22 @@
 import React from "react";
-import CardContact from "./Card.jsx";
+import { RouterProvider } from "react-router";
+import CardContact from "./CardContact.jsx";
+import { ContextProvider } from "./views/ContextProvider.jsx";
 import Formulario from "./views/Formulario.jsx";
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { router } from "./routes/router.js";
 
 //create your first component
 const Home = () => {
-	return (
-		<>
-		< CardContact />
-		< Formulario />
-		</>
-	);
+  return (
+    <div>
+      <ContextProvider>
+        <RouterProvider router={router}>
+          <CardContact />
+          <Formulario />
+        </RouterProvider>
+      </ContextProvider>
+    </div>
+  );
 };
 
 export default Home;

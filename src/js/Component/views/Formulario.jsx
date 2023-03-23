@@ -1,8 +1,16 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router";
 
 
 const Formulario = () => {
+
+    const Navigate = useNavigate();
+
+    const handleNavigate = ()=>{
+        Navigate('/');
+    }
+
     return (
         <>
         <h1>Add a new contact</h1>
@@ -30,7 +38,7 @@ const Formulario = () => {
                   </div>
             </form>
             <Button variant="primary">Send</Button>
-            <p>Or go back to contacts</p>
+            <p onClick={handleNavigate}>Or go back to contacts</p>
         </>
 
     )

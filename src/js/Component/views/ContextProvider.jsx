@@ -1,49 +1,67 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-
-
 const Context = createContext();
 
+export const ContextProvider = ({ children }) => {
+  const [agenda, setAgenda] = useState([]);
+  const [newContact, setNewContact] = useState({});
+  const [contact, setContact] = useState([]);
+ 
 
 
-export const ContextProvider = ({children}) => {
-    const [agenda, setAgenda] = useState([])
-    const [contact, setContact] = useState([])
-    const store = { agenda };
-    const action = { handleCreate, handleEdit, handleDelete};
+  useEffect(() => {
+    console.log(`newcontact`,newContact);
 
-    
-    useEffect(()=>{
-        fetch('https://assets.breatheco.de/apis/fake/contact/agenda/agenda_n&n')
-        .then((res) => res.json())
-        .then((data) => {
-            setAgenda(data)
-        })
-        .catch((err) => console.log(err))
-    },[])
+    fetch("https://assets.breatheco.de/apis/fake/contact/agenda/agenda_n&n")
+      .then((res) => res.json())
+      .then((data) => {
+        setAgenda(data);
+      })
+      .catch((err) => console.log(err));
+  }, [newContact]);
 
-    const handleCreate = () => {
-
-    }
-
-    const handleEdit = () => {
-
-    }
-
-    const handleDelete = () => {
-
-    }
-    
-    return (
-        <>
-        <Context.Provider value={{store, action}} >
-            {children}
-        </Context.Provider>
-    </>)
+  const handleCreate = () => {
+    let tempContact = {
+        full_name: "Nacho Muñoz",
+        agenda_slug: "agenda_n&n",
+        email: "nachom@gmail.com",
+        phone: "7864485859",
+        address: "calle victoria 22, 29384 CR, ESP",
 }
-
-const useStore = () => {
-    return useContext(Context);
+    setNewContact(tempContact);
+    return fetch("https://assets.breatheco.de/apis/fake/contact/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(tempContact),
+    });
   };
 
-  export default useStore;
+  const handleEdit = () => {
+
+    const editContact = fetch(`https://assets.breatheco.de/apis/fake/contact/${contact_id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    } )
+  };
+
+  const handleDelete = () => {};
+  const store = { agenda };
+  const action = { handleCreate, handleEdit, handleDelete };
+
+  return (
+    <>
+      <Context.Provider value={{ store, action }}>{children}</Context.Provider>
+    </>
+  );
+};
+
+const useStore = () => {
+  return useContext(Context);
+};
+
+export default useStore;

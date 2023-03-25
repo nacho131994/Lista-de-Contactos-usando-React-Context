@@ -16,7 +16,10 @@ const CardContact = () => {
     Navigate("/formulario");
   };
 
-  return (
+
+
+  return 
+  (
     <>
     <div className="btnAddPeople">
       <Button variant="success" onClick={handleNavigate}>

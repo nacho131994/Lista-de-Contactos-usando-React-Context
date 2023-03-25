@@ -1,12 +1,16 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
+import useStore from "./ContextProvider.jsx";
 
 
 const Formulario = () => {
 
     const Navigate = useNavigate();
+    const {action} = useStore();
+    const {handleCreate} = action;
 
+    // console.log(``,)
     const handleNavigate = ()=>{
         Navigate('/');
     }
@@ -37,7 +41,7 @@ const Formulario = () => {
                       <input type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
                   </div>
             </form>
-            <Button variant="primary">Send</Button>
+            <Button variant="primary" onClick={handleCreate}>Send</Button>
             <p onClick={handleNavigate}>Or go back to contacts</p>
         </>
 

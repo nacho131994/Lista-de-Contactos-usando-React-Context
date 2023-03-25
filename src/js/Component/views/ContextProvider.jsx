@@ -8,7 +8,9 @@ const Context = createContext();
 
 export const ContextProvider = ({children}) => {
     const [agenda, setAgenda] = useState([])
+    const [contact, setContact] = useState([])
     const store = { agenda };
+    const action = { handleCreate, handleEdit, handleDelete};
 
     
     useEffect(()=>{
@@ -20,14 +22,21 @@ export const ContextProvider = ({children}) => {
         .catch((err) => console.log(err))
     },[])
 
-    const handleAddContact = () => {
+    const handleCreate = () => {
 
+    }
+
+    const handleEdit = () => {
+
+    }
+
+    const handleDelete = () => {
 
     }
     
     return (
         <>
-        <Context.Provider value={{store}} >
+        <Context.Provider value={{store, action}} >
             {children}
         </Context.Provider>
     </>)

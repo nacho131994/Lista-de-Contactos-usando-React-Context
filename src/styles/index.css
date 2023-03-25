@@ -10,21 +10,32 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 
 .imgProfile{
-    max-width: 300px;
-    max-height: 200px;
+    max-width: 250px;
     border-radius: 50%;
+    padding: 10px;
+    aspect-ratio: 3/2;
 }
 .Card{
     display: flex;
     flex-direction: row;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 1rem;
+    border: 5px solid black;
 }
-.iconos{
-    text-align: end;
-    display: flex;
-    margin: auto;
+i{
+    margin: 10px;
 }
 .title{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btnAddPeople{
+    display: flex;
+    justify-content: end;
+    margin: 1rem;
 }

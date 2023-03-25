@@ -1,35 +1,33 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 
+
 const Context = createContext();
 
 
 
 export const ContextProvider = ({children}) => {
+    const [agenda, setAgenda] = useState([])
+    const store = { agenda };
 
-    const [agenda, setAgenda] = useState('https://assets.breatheco.de/apis/fake/contact/agenda/nicoNachoAgenda')
     
     useEffect(()=>{
-        fetch(agenda),{
-	method: 'POST', 
-	mode: 'cors', 
-	redirect: 'follow',
-	headers: new Headers({
-		'Content-Type': 'text/plain'
-}).then((res)=>console.log(`res post`,res))
-        }
+        fetch('https://assets.breatheco.de/apis/fake/contact/agenda/agenda_n&n')
         .then((res) => res.json())
         .then((data) => {
             setAgenda(data)
-            console.log(`data`,data)
         })
         .catch((err) => console.log(err))
     },[])
 
+    const handleAddContact = () => {
+
+
+    }
     
     return (
         <>
-        <Context.Provider >
+        <Context.Provider value={{store}} >
             {children}
         </Context.Provider>
     </>)

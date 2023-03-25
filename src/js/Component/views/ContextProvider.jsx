@@ -10,7 +10,6 @@ export const ContextProvider = ({ children }) => {
 
 
   useEffect(() => {
-    console.log(`newcontact`,newContact);
 
     fetch("https://assets.breatheco.de/apis/fake/contact/agenda/agenda_n&n")
       .then((res) => res.json())

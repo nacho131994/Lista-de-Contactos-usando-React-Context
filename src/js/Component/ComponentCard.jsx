@@ -1,15 +1,14 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import useStore from "./views/ContextProvider.jsx";
+import ModalConfirm from "./views/ModalConfirm.jsx";
 
 
 
 const ComponentCard = (props) => {
 
     const {action} = useStore();
-    const {handleDelete} = action;
-
-
+    const {handleShow} = action;
 
 
     return(
@@ -24,7 +23,7 @@ const ComponentCard = (props) => {
           <Card.Title className="title"> {props.name}
             <div>
               <i className="fa-solid fa-pencil"></i>
-              <i className="fa-regular fa-trash-can" onClick={()=>handleDelete(props.id)}></i>
+              <ModalConfirm  id={props.id} onclick={handleShow}/>
               </div>
           </Card.Title>
           <Card.Text>

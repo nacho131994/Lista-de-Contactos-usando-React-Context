@@ -25,6 +25,7 @@
     font-family: 'Ubuntu', sans-serif;
     margin: 1rem;
     border: 5px solid black;
+    max-width: 50rem;
 }
 i{
     margin: 10px;

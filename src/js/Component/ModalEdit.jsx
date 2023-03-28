@@ -34,13 +34,60 @@ const ModalEdit = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Edit Contact </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Edit</Modal.Body>
+        <Modal.Body>
+        <form>
+        <span>Full Name</span>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            // onChange={createFullName}
+          />
+        </div>
+        <span>Email</span>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Useremail"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            // onChange={createEmail}
+          />
+        </div>
+        <span>Phone</span>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Userphone"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            // onChange={createPhone}
+          />
+        </div>
+        <span>Adress</span>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Useraddress"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            // onChange={createAddress}
+          />
+        </div>
+      </form>
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleNot}>
-            No
-          </Button>
           <Button variant="primary" onClick={()=>handleYes(props)}>
             Yes
+          </Button>
+          <Button variant="secondary" onClick={handleNot}>
+            No
           </Button>
         </Modal.Footer>
       </Modal>

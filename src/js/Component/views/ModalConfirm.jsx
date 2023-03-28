@@ -9,21 +9,23 @@ import trash from 'react-useanimations/lib/trash';
 
 
 const ModalConfirm = (props) => {
+
   
   const Navigate = useNavigate();
   const {store} = useStore();
   const { action } = useStore() 
   const { show} = store;
-  const { handleShow, setConfirmDelete, setShow } = action;
+  const { handleShow, setConfirmDelete, setShow, handleDelete } = action;
 
   const handleNot= () => {
     setShow(false);
     setConfirmDelete(false);
     Navigate("/");
     };
-  const handleYes = () => {
+  const handleYes = (props) => {
     setShow(false)
     setConfirmDelete(true);
+    handleDelete(props.id)
     Navigate("/");
   }
 
@@ -32,15 +34,15 @@ const ModalConfirm = (props) => {
     <Button className='btn-light'><UseAnimations animation={trash} onClick={()=>handleShow(props.id)}/></Button>
       <Modal show={show} onHide={handleNot}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Delete Contact</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Delete</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleNot}>
-            Close
+          <Button variant="primary" onClick={()=>handleYes(props)}>
+            Yes
           </Button>
-          <Button variant="primary" onClick={handleYes}>
-            Save Changes
+          <Button variant="secondary" onClick={handleNot}>
+            No
           </Button>
         </Modal.Footer>
       </Modal>

@@ -5,6 +5,7 @@ import { ContextProvider } from "./views/ContextProvider.jsx";
 import Formulario from "./views/Formulario.jsx";
 import { router } from "./routes/router.js";
 import ModalConfirm from "./views/ModalConfirm.jsx";
+import ModalEdit from "./ModalEdit.jsx";
 
 //create your first component
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <ContextProvider>
         <RouterProvider router={router}>
           <CardContact />
+            <ModalEdit/>
             <ModalConfirm />
           <Formulario />
         </RouterProvider>

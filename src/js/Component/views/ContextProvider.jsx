@@ -6,25 +6,25 @@ const Context = createContext();
 export const ContextProvider = ({ children }) => {
   const [agenda, setAgenda] = useState([]);
   const [newContact, setNewContact] = useState({});
-  const [fullName, setFullName] = useState('');
-  const [userAddress, setUserAddress] = useState('');
-  const [userPhone, setUserPhone] = useState('');
-  const [userEmail, setUserEmail] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [userAddress, setUserAddress] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [confirmEdit, setConfirmEdit] = useState(false);
 
-  
-  
   const handleCreate = () => {
     let tempContact = {
-      full_name : fullName,
+      full_name: fullName,
       agenda_slug: "agenda_n&n",
       email: userEmail,
       phone: userPhone,
-      address: userAddress
+      address: userAddress,
     };
     setNewContact(tempContact);
-    return  fetch(`${URL_CONTACT}`, {
+    return fetch(`${URL_CONTACT}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,16 +32,16 @@ export const ContextProvider = ({ children }) => {
       body: JSON.stringify(tempContact),
     });
   };
-  
-  const handleEdit = (props) => {
+
+  const handleEdit = (contact_id) => {
     let editContact = {
-      id: props.id,
-      fullName: props.name,
-      email: props.email,
-      phone: props.phone,
-      address: props.location
-    }
-    return fetch(`${URL_CONTACT}${props.id}`, {
+      id: contact_id,
+      // fullName: fullName,
+      // email: email,
+      // phone: phone,
+      // address: location,
+    };
+    return fetch(`${URL_CONTACT}${contact_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -50,29 +50,41 @@ export const ContextProvider = ({ children }) => {
     });
   };
 
-  const handleShow = (contact_id) => {
-    console.log(`id`,contact_id);
-    setShow(true)
-    handleDelete(contact_id);
-  }
-    
-  
+  const handleShow = () => {
+    setShow(true);
+  };
+  const handleShowEdit = () => {
+    setShowEdit(true);
+  };
+
   const handleDelete = (contact_id) => {
-    confirmDelete ? ( fetch(`${URL_CONTACT}${contact_id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    })
-     )
-     : setConfirmDelete(false);
+       fetch(`${URL_CONTACT}${contact_id}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        })
   };
 
   const createFullName = (event) => setFullName(event.target.value);
-  const createAddress = (event) => setUserAddress(event.target.value)
+  const createAddress = (event) => setUserAddress(event.target.value);
   const createEmail = (event) => setUserEmail(event.target.value);
   const createPhone = (event) => setUserPhone(event.target.value);
-  const store = { agenda, show};
-  const action = { handleCreate, handleEdit, handleDelete, createFullName, createAddress, createEmail,createPhone, handleShow, setConfirmDelete, setShow };
-  
+  const store = { agenda, show, showEdit };
+  const action = {
+    handleCreate,
+    handleEdit,
+    handleDelete,
+    handleShowEdit,
+    handleShow,
+    createFullName,
+    createAddress,
+    createEmail,
+    createPhone,
+    setShow,
+    setConfirmDelete,
+    setConfirmEdit,
+    setShowEdit,
+  };
+
   useEffect(() => {
     fetch(URL_AGENDA)
       .then((res) => res.json())

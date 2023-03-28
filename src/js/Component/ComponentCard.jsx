@@ -1,13 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import useStore from "./views/ContextProvider.jsx";
+import UseAnimations from "react-useanimations";
+import trash from "react-useanimations/lib/trash";
+import edit from 'react-useanimations/lib/edit';
 
 
 
 const ComponentCard = (props) => {
 
     const {action} = useStore();
-    const {handleDelete} = action;
+    const {handleDelete, handleEdit} = action;
 
 
 
@@ -23,8 +26,8 @@ const ComponentCard = (props) => {
         <Card.Body>
           <Card.Title className="title"> {props.name}
             <div>
-              <i className="fa-solid fa-pencil"></i>
-              <i className="fa-regular fa-trash-can" onClick={()=>handleDelete(props.id)}></i>
+              <UseAnimations animation={edit} onClick={()=>handleEdit(props)}/>
+              <UseAnimations animation={trash} onClick={()=>handleDelete(props.id)}/>
               </div>
           </Card.Title>
           <Card.Text>

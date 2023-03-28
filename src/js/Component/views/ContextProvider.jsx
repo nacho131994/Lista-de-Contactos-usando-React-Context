@@ -10,6 +10,8 @@ export const ContextProvider = ({ children }) => {
   const [userAddress, setUserAddress] = useState('');
   const [userPhone, setUserPhone] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [show, setShow] = useState(false);
 
   
   
@@ -47,20 +49,29 @@ export const ContextProvider = ({ children }) => {
       body: JSON.stringify(editContact),
     });
   };
+
+  const handleShow = (contact_id) => {
+    console.log(`id`,contact_id);
+    setShow(true)
+    handleDelete(contact_id);
+  }
+    
   
   const handleDelete = (contact_id) => {
-    return fetch(`${URL_CONTACT}${contact_id}`, {
+    confirmDelete ? ( fetch(`${URL_CONTACT}${contact_id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-    });
+    })
+     )
+     : setConfirmDelete(false);
   };
 
   const createFullName = (event) => setFullName(event.target.value);
   const createAddress = (event) => setUserAddress(event.target.value)
   const createEmail = (event) => setUserEmail(event.target.value);
   const createPhone = (event) => setUserPhone(event.target.value);
-  const store = { agenda };
-  const action = { handleCreate, handleEdit, handleDelete, createFullName, createAddress, createEmail,createPhone };
+  const store = { agenda, show};
+  const action = { handleCreate, handleEdit, handleDelete, createFullName, createAddress, createEmail,createPhone, handleShow, setConfirmDelete, setShow };
   
   useEffect(() => {
     fetch(URL_AGENDA)

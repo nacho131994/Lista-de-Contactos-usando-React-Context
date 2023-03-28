@@ -3,7 +3,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router';
+import UseAnimations from 'react-useanimations';
 import useStore from './ContextProvider.jsx';
+import trash from 'react-useanimations/lib/trash';
 
 
 const ModalConfirm = (props) => {
@@ -27,7 +29,7 @@ const ModalConfirm = (props) => {
 
   return (
     <>
-    <Button><i className="fa-regular fa-trash-can" onClick={()=>handleShow(props.id)}></i></Button>
+    <Button className='btn-light'><UseAnimations animation={trash} onClick={()=>handleShow(props.id)}/></Button>
       <Modal show={show} onHide={handleNot}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>

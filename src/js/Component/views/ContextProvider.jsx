@@ -33,13 +33,20 @@ export const ContextProvider = ({ children }) => {
     });
   };
   
-  const handleEdit = (contact_id) => {
-    return fetch(`${URL_CONTACT}${contact_id}`, {
+  const handleEdit = (props) => {
+    let editContact = {
+      id: props.id,
+      fullName: props.name,
+      email: props.email,
+      phone: props.phone,
+      address: props.location
+    }
+    return fetch(`${URL_CONTACT}${props.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(editContact),
     });
   };
 

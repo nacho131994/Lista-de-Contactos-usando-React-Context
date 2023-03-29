@@ -28,7 +28,7 @@ const Formulario = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Username"
+            placeholder="Name"
             aria-label="Username"
             aria-describedby="basic-addon1"
             onChange={(e) => createFullName(e)}
@@ -39,7 +39,7 @@ const Formulario = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Useremail"
+            placeholder="name@example.domain"
             aria-label="Username"
             aria-describedby="basic-addon1"
             onChange={createEmail}
@@ -50,7 +50,7 @@ const Formulario = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Userphone"
+            placeholder="Phone Number"
             aria-label="Username"
             aria-describedby="basic-addon1"
             onChange={createPhone}
@@ -61,7 +61,7 @@ const Formulario = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Useraddress"
+            placeholder="Address"
             aria-label="Username"
             aria-describedby="basic-addon1"
             onChange={createAddress}
@@ -71,7 +71,7 @@ const Formulario = () => {
       <Button variant="primary" onClick={handleNavigate}>
         Send
       </Button>
-      <p onClick={handleNavigate}>Or go back to contacts</p>
+      <p className="goBack" onClick={handleNavigate}>Or go back to contacts</p>
     </>
   );
 };

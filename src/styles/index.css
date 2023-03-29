@@ -44,3 +44,22 @@ i{
 .Button{
     background-color: aliceblue;
 }
+
+.goBack{
+    color:white;
+    margin-top:10px;
+    border: 1px solid #0000ff6c;
+    width:170px;
+    border-radius: 5px;
+    background-color: #0c0c99;
+   
+}
+
+.goBack:hover{
+    background-color: rgb(47, 0, 255);
+    width:170px;
+    color: white;
+    cursor:pointer
+    
+    
+}

@@ -8,28 +8,25 @@ import edit from 'react-useanimations/lib/edit';
 
 
 const ModalEdit = (props) => {
-  
+
   const Navigate = useNavigate();
   const {store} = useStore();
   const { action } = useStore() 
-  const { showEdit } = store;
-  const { setConfirmEdit, handleShowEdit, setShowEdit, handleEdit } = action;
+  const { showEdit, fullName, userEmail, userAddress, userPhone } = store;
+  const { handleShowEdit, setShowEdit, handleEdit, setFullName, createFullName, createEmail, createAddress, createPhone } = action;
 
   const handleNot= () => {
     setShowEdit(false);
-    setConfirmEdit(false);
-    Navigate("/");
     };
   const handleYes = (props) => {
-    setShowEdit(true)
-    setConfirmEdit(true);
-    handleEdit(props);
-    Navigate("/");
+    handleEdit(props.id);
+    setShowEdit(false);
+    console.log(props.id)
   }
 
   return (
     <>
-    <Button className='btn-light'><UseAnimations animation={edit} onClick={()=>handleShowEdit(props.id)}/></Button>
+    <Button className='btn-light'><UseAnimations animation={edit} key={props.id} onClick={handleShowEdit}/></Button>
       <Modal show={showEdit} onHide={handleNot}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Contact </Modal.Title>
@@ -41,10 +38,10 @@ const ModalEdit = (props) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Username"
+            value={fullName}
             aria-label="Username"
             aria-describedby="basic-addon1"
-            // onChange={createFullName}
+            onChange={createFullName}
           />
         </div>
         <span>Email</span>
@@ -52,10 +49,10 @@ const ModalEdit = (props) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Useremail"
+            value={userEmail}
             aria-label="Username"
             aria-describedby="basic-addon1"
-            // onChange={createEmail}
+            onChange={createEmail}
           />
         </div>
         <span>Phone</span>
@@ -63,10 +60,10 @@ const ModalEdit = (props) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Userphone"
+            value={userPhone}
             aria-label="Username"
             aria-describedby="basic-addon1"
-            // onChange={createPhone}
+            onChange={createPhone}
           />
         </div>
         <span>Adress</span>
@@ -74,10 +71,10 @@ const ModalEdit = (props) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Useraddress"
+            value={userAddress}
             aria-label="Username"
             aria-describedby="basic-addon1"
-            // onChange={createAddress}
+            onChange={createAddress}
           />
         </div>
       </form>

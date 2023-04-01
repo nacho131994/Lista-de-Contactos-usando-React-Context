@@ -4,7 +4,6 @@ import useStore from "./views/ContextProvider.jsx";
 import UseAnimations from "react-useanimations";
 import trash from "react-useanimations/lib/trash";
 import edit from "react-useanimations/lib/edit";
-
 import ModalConfirm from "./views/ModalConfirm.jsx";
 import ModalEdit from "./ModalEdit.jsx";
 
@@ -27,7 +26,7 @@ const ComponentCard = (props) => {
         <Card.Body>
           <Card.Title className="title"> {props.name}
             <div>
-              <ModalEdit id={props.id}><UseAnimations animation={edit} onClick={handleShowEdit}/></ModalEdit>
+              <ModalEdit id={props.id}><UseAnimations animation={edit}/></ModalEdit>
               <ModalConfirm id={props.id}><UseAnimations animation={trash} onClick={handleShow}/></ModalConfirm>
               </div>
           </Card.Title>

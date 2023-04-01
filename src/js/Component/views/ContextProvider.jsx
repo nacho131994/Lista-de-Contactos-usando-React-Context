@@ -13,7 +13,8 @@ export const ContextProvider = ({ children }) => {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [confirmEdit, setConfirmEdit] = useState(false);
+  const [contactID, setcontactID] = useState('')
+
 
   const handleCreate = () => {
     let tempContact = {
@@ -33,15 +34,16 @@ export const ContextProvider = ({ children }) => {
     });
   };
 
-  const handleEdit = (contact_id) => {
+  const handleEdit = (id) => {
+    setcontactID(id)
     let editContact = {
-      id: contact_id,
-      // fullName: fullName,
-      // email: email,
-      // phone: phone,
-      // address: location,
+      id: contactID,
+      fullName: fullName,
+      email: userEmail,
+      phone: userPhone,
+      address: userAddress,
     };
-    return fetch(`${URL_CONTACT}${contact_id}`, {
+    return fetch(`${URL_CONTACT}${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +51,6 @@ export const ContextProvider = ({ children }) => {
       body: JSON.stringify(editContact),
     });
   };
-
   const handleShow = () => {
     setShow(true);
   };
@@ -68,7 +69,7 @@ export const ContextProvider = ({ children }) => {
   const createAddress = (event) => setUserAddress(event.target.value);
   const createEmail = (event) => setUserEmail(event.target.value);
   const createPhone = (event) => setUserPhone(event.target.value);
-  const store = { agenda, show, showEdit };
+  const store = { agenda, show, showEdit, userPhone, userAddress, fullName, userEmail };
   const action = {
     handleCreate,
     handleEdit,
@@ -81,7 +82,6 @@ export const ContextProvider = ({ children }) => {
     createPhone,
     setShow,
     setConfirmDelete,
-    setConfirmEdit,
     setShowEdit,
   };
 

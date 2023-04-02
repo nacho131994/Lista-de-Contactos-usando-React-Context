@@ -1,34 +1,42 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import useStore from "./views/ContextProvider.jsx";
+import useStore from "../store/ContextProvider.jsx";
+import Button from "react-bootstrap/Button";
 import UseAnimations from "react-useanimations";
 import trash from "react-useanimations/lib/trash";
 import edit from "react-useanimations/lib/edit";
-import ModalConfirm from "./views/ModalConfirm.jsx";
-import ModalEdit from "./ModalEdit.jsx";
-
-
 
 const ComponentCard = (props) => {
+  const { action } = useStore();
+  const { handleShowDelete, handleShowEdit, handleContactID } = action;
 
-    const {action} = useStore();
-    const {handleShow, handleShowEdit} = action;
+  const handleOpenEdit = () => {
+    handleContactID(props.id);
+    handleShowEdit();
+  };
+  const handleOpenDelete = () => {
+    handleContactID(props.id);
+    handleShowDelete();
+  }
 
-
-    return(
-        <>
-        <Card className="Card">
-        <Card.Img
-          className="imgProfile"
-          variant="top"
-          src={props.img}
-        />
+  return (
+    <>
+      <Card className="Card">
+        <Card.Img className="imgProfile" variant="top" src={props.img} />
         <Card.Body>
-          <Card.Title className="title"> {props.name}
+          <Card.Title className="title">
+            {" "}
+            {props.name}
             <div>
-              <ModalEdit id={props.id}><UseAnimations animation={edit}/></ModalEdit>
-              <ModalConfirm id={props.id}><UseAnimations animation={trash} onClick={handleShow}/></ModalConfirm>
-              </div>
+              <Button className="btn-light" onClick={handleOpenEdit}>
+                <UseAnimations animation={edit} />
+              </Button>
+              <Button className="btn-light" onClick={handleOpenDelete}>
+                <UseAnimations
+                  animation={trash}
+                />
+              </Button>
+            </div>
           </Card.Title>
           <Card.Text>
             <i className="fa-solid fa-location-dot"></i>
@@ -44,8 +52,8 @@ const ComponentCard = (props) => {
           </Card.Text>
         </Card.Body>
       </Card>
-        </>
-    )
-}
+    </>
+  );
+};
 
 export default ComponentCard;

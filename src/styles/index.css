@@ -12,7 +12,9 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-
+body{
+    background-color: #5353646c;
+}
 .imgProfile{
     max-width: 250px;
     border-radius: 50%;
@@ -25,7 +27,8 @@
     font-family: 'Ubuntu', sans-serif;
     margin: 1rem;
     border: 5px solid black;
-    max-width: 50rem;
+    max-width: 40rem;
+    background: none;
 }
 i{
     margin: 10px;
@@ -46,20 +49,21 @@ i{
 }
 
 .goBack{
-    color:white;
-    margin-top:10px;
-    border: 1px solid #0000ff6c;
-    width:170px;
-    border-radius: 5px;
-    background-color: #0c0c99;
-   
+    color:rgb(27, 25, 25);
+    margin: auto;
 }
 
 .goBack:hover{
-    background-color: rgb(47, 0, 255);
-    width:170px;
-    color: white;
-    cursor:pointer
-    
-    
+    color: rgb(202, 58, 58);
+    cursor:pointer  
+}
+
+.Form{
+    padding: 10px;
+}
+.formInput{
+    width: 50%;
+}
+.bla{
+    display: flex;
 }

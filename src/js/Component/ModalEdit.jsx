@@ -1,39 +1,33 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router';
-import UseAnimations from 'react-useanimations';
-import useStore from './views/ContextProvider.jsx';
-import edit from 'react-useanimations/lib/edit';
+import useStore from '../store/ContextProvider.jsx';
 
 
-const ModalEdit = (props) => {
 
-  const Navigate = useNavigate();
+const ModalEdit = () => {
   const {store} = useStore();
   const { action } = useStore() 
-  const { showEdit, fullName, userEmail, userAddress, userPhone } = store;
-  const { handleShowEdit, setShowEdit, handleEdit, setFullName, createFullName, createEmail, createAddress, createPhone } = action;
-
+  const { showEdit, fullName, userEmail, userAddress, userPhone, contactID} = store;
+  const { setShowEdit, handleEdit, createFullName, createEmail, createAddress, createPhone, handleContactID} = action;
   const handleNot= () => {
     setShowEdit(false);
     };
-  const handleYes = (props) => {
-    handleEdit(props.id);
-    setShowEdit(false);
-    console.log(props.id)
-  }
 
+  const handleYes = () => {
+    handleContactID(contactID);
+    handleEdit();
+    setShowEdit( prev => !prev);
+  }
   return (
     <>
-    <Button className='btn-light'><UseAnimations animation={edit} key={props.id} onClick={handleShowEdit}/></Button>
       <Modal show={showEdit} onHide={handleNot}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Contact </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <form>
-        <span>Full Name</span>
+        <span>Full Name ID: {contactID}</span>
         <div className="input-group mb-3">
           <input
             type="text"
@@ -80,7 +74,7 @@ const ModalEdit = (props) => {
       </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={()=>handleYes(props)}>
+          <Button variant="primary" onClick={handleYes}>
             Yes
           </Button>
           <Button variant="secondary" onClick={handleNot}>

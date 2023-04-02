@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
-import useStore from "./ContextProvider.jsx";
+import useStore from "../store/ContextProvider.jsx";
+import { Card } from "react-bootstrap";
 
 const Formulario = () => {
   const Navigate = useNavigate();
@@ -18,13 +19,15 @@ const Formulario = () => {
     handleCreate();
     Navigate("/");
   };
+  const handleHome = () => Navigate("/");
 
   return (
     <>
+    <div className="Form">
       <h1>Add a new contact</h1>
       <form>
         <span>Full Name</span>
-        <div className="input-group mb-3">
+        <div className="input-group formInput mb-3">
           <input
             type="text"
             className="form-control"
@@ -35,7 +38,7 @@ const Formulario = () => {
           />
         </div>
         <span>Email</span>
-        <div className="input-group mb-3">
+        <div className="input-group formInput mb-3">
           <input
             type="text"
             className="form-control"
@@ -46,7 +49,7 @@ const Formulario = () => {
           />
         </div>
         <span>Phone</span>
-        <div className="input-group mb-3">
+        <div className="input-group formInput mb-3">
           <input
             type="text"
             className="form-control"
@@ -57,7 +60,7 @@ const Formulario = () => {
           />
         </div>
         <span>Adress</span>
-        <div className="input-group mb-3">
+        <div className="input-group formInput mb-3">
           <input
             type="text"
             className="form-control"
@@ -71,7 +74,8 @@ const Formulario = () => {
       <Button variant="primary" onClick={handleNavigate}>
         Send
       </Button>
-      <p className="goBack" onClick={handleNavigate}>Or go back to contacts</p>
+      <div className="goBack" onClick={handleHome}>Back to contacts</div>
+      </div>
     </>
   );
 };

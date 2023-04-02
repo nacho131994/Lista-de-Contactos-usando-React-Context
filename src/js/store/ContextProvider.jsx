@@ -10,13 +10,22 @@ export const ContextProvider = ({ children }) => {
   const [userAddress, setUserAddress] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [contactID, setcontactID] = useState('')
+  const [contactID, setContactID] = useState()
 
 
-  const handleCreate = () => {
+  const getAgenda = () => {
+    return(
+  fetch(URL_AGENDA)
+    .then((res) => res.json())
+    .then((data) => {
+      setAgenda(data);
+    })
+    .catch((err) => console.log(err))
+)}
+  const handleContactID = (id)=> setContactID(id);
+  const handleCreate = async () => {
     let tempContact = {
       full_name: fullName,
       agenda_slug: "agenda_n&n",
@@ -31,68 +40,61 @@ export const ContextProvider = ({ children }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(tempContact),
-    });
+    })
+    .catch(err => console.log(err));
   };
 
-  const handleEdit = (id) => {
-    setcontactID(id)
+  const handleEdit = async () => {
     let editContact = {
       id: contactID,
-      fullName: fullName,
+      full_name: fullName,
       email: userEmail,
       phone: userPhone,
       address: userAddress,
     };
-    return fetch(`${URL_CONTACT}${id}`, {
+    return fetch(`${URL_CONTACT}${contactID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(editContact),
-    });
+    }).then(res=> getAgenda());
   };
-  const handleShow = () => {
-    setShow(true);
-  };
-  const handleShowEdit = () => {
-    setShowEdit(true);
-  };
+  const handleShowDelete = () => setShowDelete(true);
+  const handleShowEdit = () => setShowEdit(true);
 
-  const handleDelete = (contact_id) => {
-       fetch(`${URL_CONTACT}${contact_id}`, {
+  const handleDelete = async () => {
+    return (
+       fetch(`${URL_CONTACT}${contactID}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-        })
-  };
+        }).then(res => getAgenda())
+        .catch(err => console.log(err))
+  )};
 
   const createFullName = (event) => setFullName(event.target.value);
   const createAddress = (event) => setUserAddress(event.target.value);
   const createEmail = (event) => setUserEmail(event.target.value);
   const createPhone = (event) => setUserPhone(event.target.value);
-  const store = { agenda, show, showEdit, userPhone, userAddress, fullName, userEmail };
+  const store = { agenda, showDelete, showEdit, userPhone, userAddress, fullName, userEmail, contactID };
   const action = {
+    handleContactID,
     handleCreate,
     handleEdit,
     handleDelete,
     handleShowEdit,
-    handleShow,
+    handleShowDelete,
     createFullName,
     createAddress,
     createEmail,
     createPhone,
-    setShow,
-    setConfirmDelete,
+    setShowDelete,
     setShowEdit,
   };
 
   useEffect(() => {
-    fetch(URL_AGENDA)
-      .then((res) => res.json())
-      .then((data) => {
-        setAgenda(data);
-      })
-      .catch((err) => console.log(err));
-  }, [newContact, agenda]);
+    getAgenda();
+  }, [newContact]);
 
   return (
     <>

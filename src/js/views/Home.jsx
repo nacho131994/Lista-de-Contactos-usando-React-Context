@@ -7,17 +7,20 @@ import ModalDelete from "../Component/ModalDelete.jsx";
 import ModalEdit from "../Component/ModalEdit.jsx";
 import UseAnimations from "react-useanimations";
 import loading from "react-useanimations/lib/loading3";
-import { URL_AGENDA } from "../store/Fetchs.jsx";
+import AlertDeleteAll from "../Component/AlertDeleteAll.jsx";
 
 const Home = () => {
   const Navigate = useNavigate();
-  const { store , action} = useStore();
+  const { store, action } = useStore();
   const { agenda } = store;
-  const { handleDeleteAll} = action;
+  const {setShowAlert} = action;
 
   const handleNavigate = () => {
     Navigate("/formulario");
   };
+
+
+  const handleAlertDeleteAll = () => setShowAlert(true);
 
   return (
     <>
@@ -25,7 +28,7 @@ const Home = () => {
         <Button variant="success" onClick={handleNavigate}>
           Add new contact
         </Button>
-        <Button className="danger" onClick={handleDeleteAll}>Delete All</Button>
+        <Button variant="danger" onClick={handleAlertDeleteAll}>Delete All</Button>
       </div>
       <div className="d-flex row">
       {agenda.length
@@ -46,6 +49,7 @@ const Home = () => {
         </div>
         <ModalEdit/>
         <ModalDelete/>
+        <AlertDeleteAll/>
     </>
   );
 };

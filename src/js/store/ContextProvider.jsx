@@ -12,7 +12,8 @@ export const ContextProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState("");
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [contactID, setContactID] = useState()
+  const [contactID, setContactID] = useState();
+  const [showAlert, setShowAlert] = useState(false);
 
 
   const getAgenda = () => {
@@ -87,7 +88,10 @@ export const ContextProvider = ({ children }) => {
        fetch(`${URL_AGENDA}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-        }).then(res => getAgenda())
+        }).then(res => { 
+          setShowAlert(false)
+          getAgenda()
+        })
         .catch(err => console.log(err))
   )};
 
@@ -95,7 +99,7 @@ export const ContextProvider = ({ children }) => {
   const createAddress = (event) => setUserAddress(event.target.value);
   const createEmail = (event) => setUserEmail(event.target.value);
   const createPhone = (event) => setUserPhone(event.target.value);
-  const store = { agenda, showDelete, showEdit, userPhone, userAddress, fullName, userEmail, contactID };
+  const store = { agenda, showDelete, showEdit, userPhone, userAddress, fullName, userEmail, contactID, showAlert };
   const action = {
     handleContactID,
     handleCreate,
@@ -110,7 +114,8 @@ export const ContextProvider = ({ children }) => {
     setShowDelete,
     setShowEdit,
     getAgenda,
-    handleDeleteAll
+    handleDeleteAll,
+    setShowAlert,
   };
 
   useEffect(() => {

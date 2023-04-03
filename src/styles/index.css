@@ -46,7 +46,7 @@ i {
 }
 .btnAddPeople {
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
   margin: 1rem;
 }
 

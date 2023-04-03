@@ -82,6 +82,15 @@ export const ContextProvider = ({ children }) => {
         .catch(err => console.log(err))
   )};
 
+  const handleDeleteAll = async () =>{
+    return (
+       fetch(`${URL_AGENDA}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }).then(res => getAgenda())
+        .catch(err => console.log(err))
+  )};
+
   const createFullName = (event) => setFullName(event.target.value);
   const createAddress = (event) => setUserAddress(event.target.value);
   const createEmail = (event) => setUserEmail(event.target.value);
@@ -100,6 +109,8 @@ export const ContextProvider = ({ children }) => {
     createPhone,
     setShowDelete,
     setShowEdit,
+    getAgenda,
+    handleDeleteAll
   };
 
   useEffect(() => {

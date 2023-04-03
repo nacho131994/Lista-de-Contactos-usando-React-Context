@@ -7,11 +7,13 @@ import ModalDelete from "../Component/ModalDelete.jsx";
 import ModalEdit from "../Component/ModalEdit.jsx";
 import UseAnimations from "react-useanimations";
 import loading from "react-useanimations/lib/loading3";
+import { URL_AGENDA } from "../store/Fetchs.jsx";
 
 const Home = () => {
   const Navigate = useNavigate();
-  const { store } = useStore();
+  const { store , action} = useStore();
   const { agenda } = store;
+  const { handleDeleteAll} = action;
 
   const handleNavigate = () => {
     Navigate("/formulario");
@@ -23,6 +25,7 @@ const Home = () => {
         <Button variant="success" onClick={handleNavigate}>
           Add new contact
         </Button>
+        <Button className="danger" onClick={handleDeleteAll}>Delete All</Button>
       </div>
       <div className="d-flex row">
       {agenda.length

@@ -41,6 +41,7 @@ export const ContextProvider = ({ children }) => {
       },
       body: JSON.stringify(tempContact),
     })
+    .then(res => getAgenda())
     .catch(err => console.log(err));
   };
 
@@ -60,8 +61,17 @@ export const ContextProvider = ({ children }) => {
       body: JSON.stringify(editContact),
     }).then(res=> getAgenda());
   };
-  const handleShowDelete = () => setShowDelete(true);
-  const handleShowEdit = () => setShowEdit(true);
+  const handleShowDelete = (name) => {
+    setShowDelete(true);
+    setFullName(name)
+  }
+  const handleShowEdit = (name, location, email,phone) => {
+    setFullName(name);
+    setUserAddress(location);
+    setUserPhone(phone);
+    setUserEmail(email);
+    setShowEdit(true);
+  }
 
   const handleDelete = async () => {
     return (

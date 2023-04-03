@@ -1,69 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
-body{
-    background-color: #5353646c;
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2021/06/14/21/33/spaceship-6336963_1280.jpg");
+  padding: 10px;
+  font-family: "Ubuntu", sans-serif;
 }
-.imgProfile{
-    max-width: 250px;
-    border-radius: 50%;
+.form{
+    box-shadow: 5px 5px 15px 5px #df6648dd;
     padding: 10px;
-    aspect-ratio: 3/2;
+    background-color: #f09d9df3;
+    /* border-radius: 5px; */
+    border-radius: 13px;
 }
-.Card{
+.titleForm {
+  font-size: 50px;
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+.imgProfile {
+  max-width: 250px;
+  border-radius: 50%;
+  padding: 10px;
+  aspect-ratio: 3/2;
+}
+.contact{
     display: flex;
-    flex-direction: row;
-    font-family: 'Ubuntu', sans-serif;
-    margin: 1rem;
-    border: 5px solid black;
-    max-width: 40rem;
-    background: none;
+
 }
-i{
-    margin: 10px;
+.Card {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 5px 15px 5px #000000;
+  width: 40rem;
+  background-color: rgba(28, 27, 27, 0.442);
+  color: aliceblue;
 }
-.title{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+i {
+  margin: 10px;
 }
-.btnAddPeople{
-    display: flex;
-    justify-content: end;
-    margin: 1rem;
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btnAddPeople {
+  display: flex;
+  justify-content: end;
+  margin: 1rem;
 }
 
-.Button{
-    background-color: aliceblue;
+svg path {
+  stroke: white;
 }
-
-.goBack{
-    color:rgb(27, 25, 25);
-    margin: auto;
-}
-
-.goBack:hover{
-    color: rgb(202, 58, 58);
-    cursor:pointer  
-}
-
-.Form{
-    padding: 10px;
-}
-.formInput{
-    width: 50%;
-}
-.bla{
-    display: flex;
+button:hover path {
+  stroke: black;
 }

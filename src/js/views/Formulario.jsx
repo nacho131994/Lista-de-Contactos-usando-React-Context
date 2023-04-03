@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
 import useStore from "../store/ContextProvider.jsx";
-import { Card } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 
 const Formulario = () => {
   const Navigate = useNavigate();
@@ -23,59 +23,50 @@ const Formulario = () => {
 
   return (
     <>
-    <div className="Form">
-      <h1>Add a new contact</h1>
-      <form>
-        <span>Full Name</span>
-        <div className="input-group formInput mb-3">
-          <input
+      <Form className="w-50 mx-auto mt-4 form">
+        <Form.Text className="titleForm">Add a New Contact</Form.Text>
+        <Form.Group className="mb-3" controlId="formFullName">
+          <Form.Label>Fullname</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            placeholder="Name"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            onChange={(e) => createFullName(e)}
+            placeholder="fullname"
+            onChange={createFullName}
           />
-        </div>
-        <span>Email</span>
-        <div className="input-group formInput mb-3">
-          <input
-            type="text"
-            className="form-control"
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
             placeholder="name@example.domain"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
             onChange={createEmail}
           />
-        </div>
-        <span>Phone</span>
-        <div className="input-group formInput mb-3">
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formPhone">
+          <Form.Label>Phone</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
             placeholder="Phone Number"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
             onChange={createPhone}
           />
-        </div>
-        <span>Adress</span>
-        <div className="input-group formInput mb-3">
-          <input
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formLocation">
+          <Form.Label>Location</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            placeholder="Address"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
+            placeholder="Location"
             onChange={createAddress}
           />
-        </div>
-      </form>
-      <Button variant="primary" onClick={handleNavigate}>
-        Send
+        </Form.Group>
+        <Form.Group className="mx-auto d-flex justify-content-around">
+      <Button variant="success" onClick={handleNavigate}>
+        ADD
       </Button>
-      <div className="goBack" onClick={handleHome}>Back to contacts</div>
-      </div>
+      <Button variant="primary" onClick={handleHome}>
+        Cancel
+      </Button>
+
+        </Form.Group>
+      </Form>
     </>
   );
 };

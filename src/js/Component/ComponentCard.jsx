@@ -12,15 +12,16 @@ const ComponentCard = (props) => {
 
   const handleOpenEdit = () => {
     handleContactID(props.id);
-    handleShowEdit();
+    handleShowEdit(props.name, props.location, props.email, props.phone);
   };
   const handleOpenDelete = () => {
     handleContactID(props.id);
-    handleShowDelete();
+    handleShowDelete(props.name);
   }
 
   return (
     <>
+    <div className="d-flex col-6 justify-content-center my-2">
       <Card className="Card">
         <Card.Img className="imgProfile" variant="top" src={props.img} />
         <Card.Body>
@@ -28,10 +29,10 @@ const ComponentCard = (props) => {
             {" "}
             {props.name}
             <div>
-              <Button className="btn-light" onClick={handleOpenEdit}>
+              <Button variant="outline-light" className="mx-2" onClick={handleOpenEdit}>
                 <UseAnimations animation={edit} />
               </Button>
-              <Button className="btn-light" onClick={handleOpenDelete}>
+              <Button variant="outline-light" className="mx-2" onClick={handleOpenDelete}>
                 <UseAnimations
                   animation={trash}
                 />
@@ -52,6 +53,7 @@ const ComponentCard = (props) => {
           </Card.Text>
         </Card.Body>
       </Card>
+      </div>
     </>
   );
 };

@@ -5,6 +5,8 @@ import useStore from "../store/ContextProvider.jsx";
 import ComponentCard from "../Component/ComponentCard.jsx";
 import ModalDelete from "../Component/ModalDelete.jsx";
 import ModalEdit from "../Component/ModalEdit.jsx";
+import UseAnimations from "react-useanimations";
+import loading from "react-useanimations/lib/loading3";
 
 const Home = () => {
   const Navigate = useNavigate();
@@ -22,6 +24,7 @@ const Home = () => {
           Add new contact
         </Button>
       </div>
+      <div className="d-flex row">
       {agenda.length
         ? agenda.map((item) => (
             <ComponentCard
@@ -36,7 +39,8 @@ const Home = () => {
               email={item.email}
             />
           ))
-        : null}
+        : <UseAnimations animation={loading}/>}
+        </div>
         <ModalEdit/>
         <ModalDelete/>
     </>

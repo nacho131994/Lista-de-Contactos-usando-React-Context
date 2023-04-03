@@ -28,6 +28,7 @@ const Home = () => {
         <Button variant="success" onClick={handleNavigate}>
           Add new contact
         </Button>
+        <p className="contactCounter">Number of contacts: {agenda.length} </p>
         <Button variant="danger" onClick={handleAlertDeleteAll}>Delete All</Button>
       </div>
       <div className="d-flex row">
